@@ -8216,16 +8216,32 @@ if (process.env.NODE_ENV === 'production') {
 "use strict";
 
 
-var express = __webpack_require__(64);
-var React = __webpack_require__(24);
-var renderToString = __webpack_require__(137).renderToString;
-var Home = __webpack_require__(148).default;
+var _express = __webpack_require__(64);
+
+var _express2 = _interopRequireDefault(_express);
+
+var _react = __webpack_require__(24);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(137);
+
+var _Home = __webpack_require__(148);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create const from express functions
-var app = express();
+// const express = require('express');
+// const React = require('react');
+// const renderToString = require('react-dom/server').renderToString;
+// const Home = require('./client/components/Home').default;
+
+var app = (0, _express2.default)();
 
 app.get('/', function (req, res) {
-    var content = renderToString(React.createElement(Home, null));
+    var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
 
     res.send(content);
 });

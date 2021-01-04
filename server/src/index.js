@@ -11,10 +11,23 @@ import Home from './client/components/Home';
 // create const from express functions
 const app = express();
 
+// makes public folder available to client browsers
+app.use(express.static('public'));
+
+// tells react-com/server to render the Home component into an HTML string
 app.get('/', (req, res) => {
     const content = renderToString(<Home />);
 
-    res.send(content);
+    const html = `
+        <html>
+            <head></head>
+            <body>
+                <div>${content}</div>
+                <script src="bundle.js"></script>
+            </body>
+    `;
+
+    res.send(html);
 });
 
 app.listen(3000, () => {

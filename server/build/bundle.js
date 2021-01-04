@@ -8240,10 +8240,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
+// makes public folder available to client browsers
+app.use(_express2.default.static('public'));
+
+// tells react-com/server to render the Home component into an HTML string
 app.get('/', function (req, res) {
     var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
 
-    res.send(content);
+    var html = '\n        <html>\n            <head></head>\n            <body>\n                <div>' + content + '</div>\n                <script src="bundle.js"></script>\n            </body>\n    ';
+
+    res.send(html);
 });
 
 app.listen(3000, function () {

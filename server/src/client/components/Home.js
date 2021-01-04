@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Home = () => {
+const Home = () => { 
     return (
         <div>
-            <div>I'm the VERY BEST home component</div>
+            <div>I'm the NEW home component</div>
             <button onClick={() => console.log('Hi there!')}>Press me!</button>
         </div>
     )

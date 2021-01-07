@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 // tells react-com/server to use the imported renderer function
 app.get('/', (req, res) => {
-    res.send(renderer());
+    res.send(renderer(req));
 });
 
 app.listen(3000, () => {

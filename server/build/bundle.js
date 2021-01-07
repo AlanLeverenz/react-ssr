@@ -99,7 +99,7 @@ app.use(_express2.default.static('public'));
 
 // tells react-com/server to use the imported renderer function
 app.get('/', function (req, res) {
-    res.send((0, _renderer2.default)());
+    res.send((0, _renderer2.default)(req));
 });
 
 app.listen(3000, function () {

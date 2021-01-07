@@ -129,14 +129,22 @@ var _react2 = _interopRequireDefault(_react);
 
 var _server = __webpack_require__(4);
 
-var _Home = __webpack_require__(5);
+var _reactRouterDom = __webpack_require__(6);
 
-var _Home2 = _interopRequireDefault(_Home);
+var _Routers = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../client/Routers\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+var _Routers2 = _interopRequireDefault(_Routers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Home component being rendered by Routes compoennt
+// import Home from '../client/components/Home';
 exports.default = function () {
-    var content = (0, _server.renderToString)(_react2.default.createElement(_Home2.default, null));
+    var content = (0, _server.renderToString)(_react2.default.createElement(
+        _reactRouterDom.StaticRouter,
+        { context: {} },
+        _react2.default.createElement(_Routers2.default, null)
+    ));
 
     return '\n        <html>\n            <head></head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script src="bundle.js"></script>\n            </body>\n        </html>    \n    ';
 };
@@ -148,42 +156,11 @@ exports.default = function () {
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 5 */,
+/* 6 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Home = function Home() {
-    return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-            'div',
-            null,
-            'I\'m the NEW home component'
-        ),
-        _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                    return console.log('Hi there!');
-                } },
-            'Press me!'
-        )
-    );
-};
-
-exports.default = Home;
+module.exports = require("react-router-dom");
 
 /***/ })
 /******/ ]);

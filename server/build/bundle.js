@@ -98,7 +98,7 @@ var app = (0, _express2.default)();
 app.use(_express2.default.static('public'));
 
 // tells react-com/server to use the imported renderer function
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     res.send((0, _renderer2.default)(req));
 });
 
@@ -179,7 +179,7 @@ var Home = function Home() {
         _react2.default.createElement(
             'div',
             null,
-            'I\'m the NEW home component'
+            'I\'m the VERY BEST home component'
         ),
         _react2.default.createElement(
             'button',

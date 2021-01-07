@@ -21526,7 +21526,7 @@ var Home = function Home() {
         _react2.default.createElement(
             'div',
             null,
-            'I\'m the NEW home component'
+            'I\'m the VERY BEST home component'
         ),
         _react2.default.createElement(
             'button',

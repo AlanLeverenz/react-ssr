@@ -13,7 +13,7 @@ const app = express();
 app.use(express.static('public'));
 
 // tells react-com/server to use the imported renderer function
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.send(renderer(req));
 });
 

@@ -3,13 +3,18 @@ import { renderToString } from 'react-dom/server';
 // Home component being rendered by Routes compoennt
 // import Home from '../client/components/Home';
 import { StaticRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Routes from '../client/Routes';
 
-export default (req) => {
+// Provider gets state updates from store
+
+export default (req, store) => {
     const content = renderToString(
-        <StaticRouter location={req.path} context={{}}>
-            <Routes />
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter location={req.path} context={{}}>
+                <Routes />
+            </StaticRouter>
+        </Provider>
     );
 
     return `

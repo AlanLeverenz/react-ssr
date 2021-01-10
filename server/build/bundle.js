@@ -80,26 +80,34 @@ var _express = __webpack_require__(2);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderer = __webpack_require__(3);
+var _renderer = __webpack_require__(9);
 
 var _renderer2 = _interopRequireDefault(_renderer);
+
+var _createStore = __webpack_require__(10);
+
+var _createStore2 = _interopRequireDefault(_createStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create const from express functions
+var app = (0, _express2.default)();
+
+// makes public folder available to client browsers
 // const express = require('express');
 // const React = require('react');
 // const renderToString = require('react-dom/server').renderToString;
 // const Home = require('./client/components/Home').default;
 
-var app = (0, _express2.default)();
-
-// makes public folder available to client browsers
 app.use(_express2.default.static('public'));
 
 // tells react-com/server to use the imported renderer function
 app.get('*', function (req, res) {
-    res.send((0, _renderer2.default)(req));
+    var store = (0, _createStore2.default)();
+
+    // some logic to initialize and load data into the store
+
+    res.send((0, _renderer2.default)(req, store));
 });
 
 app.listen(3000, function () {
@@ -113,43 +121,7 @@ app.listen(3000, function () {
 module.exports = require("express");
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _server = __webpack_require__(4);
-
-var _reactRouterDom = __webpack_require__(6);
-
-var _Routes = __webpack_require__(7);
-
-var _Routes2 = _interopRequireDefault(_Routes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Home component being rendered by Routes compoennt
-// import Home from '../client/components/Home';
-exports.default = function (req) {
-    var content = (0, _server.renderToString)(_react2.default.createElement(
-        _reactRouterDom.StaticRouter,
-        { location: req.path, context: {} },
-        _react2.default.createElement(_Routes2.default, null)
-    ));
-
-    return '\n        <html>\n            <head></head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script src="bundle.js"></script>\n            </body>\n        </html>    \n    ';
-};
-
-/***/ }),
+/* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -230,6 +202,64 @@ exports.default = function () {
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Home2.default })
     );
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _server = __webpack_require__(4);
+
+var _reactRouterDom = __webpack_require__(6);
+
+var _reactRedux = __webpack_require__(8);
+
+var _Routes = __webpack_require__(7);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Provider gets state updates from store
+
+exports.default = function (req, store) {
+    var content = (0, _server.renderToString)(_react2.default.createElement(
+        _reactRedux.Provider,
+        { store: store },
+        _react2.default.createElement(
+            _reactRouterDom.StaticRouter,
+            { location: req.path, context: {} },
+            _react2.default.createElement(_Routes2.default, null)
+        )
+    ));
+
+    return '\n        <html>\n            <head></head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script src="bundle.js"></script>\n            </body>\n        </html>    \n    ';
+};
+// Home component being rendered by Routes compoennt
+// import Home from '../client/components/Home';
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);

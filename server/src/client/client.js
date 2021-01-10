@@ -1,5 +1,4 @@
 // Startup point for the client side application - bootup location
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import Home from './components/Home';
@@ -8,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'; // for asynchronous data actions
 import { Provider } from 'react-redux'; // gather state from store
 import Routes from './Routes';
+import reducers from './reducers';
 
 // rendering into the same div as the index.js file does
 // hydrate is used to refresh what the server sent to the browser

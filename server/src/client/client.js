@@ -1,4 +1,5 @@
 // Startup point for the client side application - bootup location
+import 'babel-polyfill'; // will define helper functions
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import Home from './components/Home';

@@ -82,6 +82,12 @@ var _express = __webpack_require__(2);
 
 var _express2 = _interopRequireDefault(_express);
 
+var _reactRouterConfig = __webpack_require__(19);
+
+var _Routes = __webpack_require__(7);
+
+var _Routes2 = _interopRequireDefault(_Routes);
+
 var _renderer = __webpack_require__(9);
 
 var _renderer2 = _interopRequireDefault(_renderer);
@@ -108,6 +114,9 @@ app.get('*', function (req, res) {
     var store = (0, _createStore2.default)();
 
     // some logic to initialize and load data into the store
+    // take current incoming path and look at route config object
+    // returns an array of components to be rendered
+    console.log((0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path));
 
     res.send((0, _renderer2.default)(req, store));
 });

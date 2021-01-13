@@ -130,7 +130,44 @@ module.exports = require("express");
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 5 */,
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Home = function Home() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+            'div',
+            null,
+            'I\'m the VERY BEST home component'
+        ),
+        _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                    return console.log('Hi there!');
+                } },
+            'Press me!'
+        )
+    );
+};
+
+exports.default = Home;
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
@@ -138,9 +175,40 @@ module.exports = require("react-router-dom");
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (14:4)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m        exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m\n \u001b[90m 13 | \u001b[39m    }\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m    {\n \u001b[90m    | \u001b[39m    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 | \u001b[39m        path\u001b[33m:\u001b[39m \u001b[32m'/users'\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 16 | \u001b[39m        component\u001b[33m:\u001b[39m \u001b[33mUsersList\u001b[39m\n \u001b[90m 17 | \u001b[39m    }\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Home = __webpack_require__(5);
+
+var _Home2 = _interopRequireDefault(_Home);
+
+var _UsersList = __webpack_require__(17);
+
+var _UsersList2 = _interopRequireDefault(_UsersList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// when we use react-router-config we export an array of objects
+
+// import { Route } from 'react-router-dom';
+exports.default = [{
+    path: '/',
+    component: _Home2.default,
+    exact: true
+}, {
+    path: '/users',
+    component: _UsersList2.default
+}];
 
 /***/ }),
 /* 8 */
@@ -169,6 +237,8 @@ var _reactRouterDom = __webpack_require__(6);
 
 var _reactRedux = __webpack_require__(8);
 
+var _reactRouterConfig = __webpack_require__(19);
+
 var _Routes = __webpack_require__(7);
 
 var _Routes2 = _interopRequireDefault(_Routes);
@@ -177,6 +247,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Provider gets state updates from store
 
+// Home component being rendered by Routes compoennt
+// import Home from '../client/components/Home';
 exports.default = function (req, store) {
     var content = (0, _server.renderToString)(_react2.default.createElement(
         _reactRedux.Provider,
@@ -184,14 +256,16 @@ exports.default = function (req, store) {
         _react2.default.createElement(
             _reactRouterDom.StaticRouter,
             { location: req.path, context: {} },
-            _react2.default.createElement(_Routes2.default, null)
+            _react2.default.createElement(
+                'div',
+                null,
+                (0, _reactRouterConfig.renderRoutes)(_Routes2.default)
+            )
         )
     ));
 
     return '\n        <html>\n            <head></head>\n            <body>\n                <div id="root">' + content + '</div>\n                <script src="bundle.js"></script>\n            </body>\n        </html>    \n    ';
 };
-// Home component being rendered by Routes compoennt
-// import Home from '../client/components/Home';
 
 /***/ }),
 /* 10 */
@@ -347,11 +421,95 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
 module.exports = require("axios");
 
 /***/ }),
-/* 17 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(8);
+
+var _actions = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UsersList = function (_Component) {
+    _inherits(UsersList, _Component);
+
+    function UsersList() {
+        _classCallCheck(this, UsersList);
+
+        return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
+    }
+
+    _createClass(UsersList, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.fetchUsers();
+        }
+    }, {
+        key: 'renderUsers',
+        value: function renderUsers() {
+            return this.props.users.map(function (user) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: user.id },
+                    user.name
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'Here\'s a big list of users:',
+                _react2.default.createElement(
+                    'ul',
+                    null,
+                    this.renderUsers()
+                )
+            );
+        }
+    }]);
+
+    return UsersList;
+}(_react.Component);
+
+function mapStateToProps(state) {
+    return { users: state.users };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList);
+
+/***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
 module.exports = require("babel-polyfill");
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-router-config");
 
 /***/ })
 /******/ ]);

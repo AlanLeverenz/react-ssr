@@ -27,4 +27,11 @@ function mapStateToProps(state) {
     return {users: state.users };
 }
 
+function loadData() {
+    console.log("I'm trying to load some data");
+}
+
+// named export needs curly braces.
+export { loadData }; 
+
 export default connect(mapStateToProps, { fetchUsers })(UsersList);

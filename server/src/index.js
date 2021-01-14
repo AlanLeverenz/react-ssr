@@ -22,9 +22,11 @@ app.get('*', (req, res) => {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
-    matchRoutes(Routes, req.path).map(({ route }) => {
-        return route.loadData ? route.loadData() : null;
+    const promises = matchRoutes(Routes, req.path).map(({ route }) => {
+        return route.loadData ? route.loadData(store) : null;
     });
+
+    console.log(promises);
 
     res.send(renderer(req, store));
 });  

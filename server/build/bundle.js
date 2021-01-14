@@ -229,11 +229,13 @@ app.get('*', function (req, res) {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
-    (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path).map(function (_ref) {
+    var promises = (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path).map(function (_ref) {
         var route = _ref.route;
 
-        return route.loadData ? route.loadData() : null;
+        return route.loadData ? route.loadData(store) : null;
     });
+
+    console.log(promises);
 
     res.send((0, _renderer2.default)(req, store));
 });
@@ -370,8 +372,8 @@ function mapStateToProps(state) {
     return { users: state.users };
 }
 
-function loadData() {
-    console.log("I'm trying to load some data");
+function loadData(store) {
+    return store.dispatch((0, _actions.fetchUsers)());
 }
 
 // named export needs curly braces.

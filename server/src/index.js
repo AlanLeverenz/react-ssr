@@ -22,10 +22,12 @@ app.get('*', (req, res) => {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
-    console.log(matchRoutes(Routes, req.path));
+    matchRoutes(Routes, req.path).map(({ route }) => {
+        return route.loadData ? route.loadData() : null;
+    });
 
     res.send(renderer(req, store));
-});
+});  
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');

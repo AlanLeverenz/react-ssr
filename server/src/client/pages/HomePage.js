@@ -9,4 +9,7 @@ const Home = () => {
     )
 }
 
-export default Home;
+// export a component object to contain its own loadData function
+export default { 
+    component: Home 
+};

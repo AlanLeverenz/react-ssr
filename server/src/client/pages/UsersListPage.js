@@ -32,6 +32,10 @@ function loadData(store) {
 }
 
 // named export needs curly braces.
-export { loadData }; 
+// export { loadData }; 
 
-export default connect(mapStateToProps, { fetchUsers })(UsersList);
+// export an object with the loadData function and the component
+export default {
+    loadData,
+    component: connect(mapStateToProps, { fetchUsers })(UsersList)
+};

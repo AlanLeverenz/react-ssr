@@ -38949,6 +38949,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+// import { Route } from 'react-router-dom';
+
+
 var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
@@ -38965,16 +38969,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // when we use react-router-config we export an array of objects
 
-// import { Route } from 'react-router-dom';
-exports.default = [{
+// using the spread function to itemize the items in the page components
+exports.default = [_extends({}, _HomePage2.default, {
     path: '/',
-    component: _HomePage2.default,
     exact: true
-}, {
-    loadData: _UsersListPage.loadData,
-    path: '/users',
-    component: _UsersListPage2.default
-}];
+}), _extends({}, _UsersListPage2.default, {
+    path: '/users'
+})];
 
 /***/ }),
 /* 463 */,
@@ -39885,7 +39886,10 @@ var Home = function Home() {
     );
 };
 
-exports.default = Home;
+// export a component object to contain its own loadData function
+exports.default = {
+    component: Home
+};
 
 /***/ }),
 /* 486 */
@@ -39897,7 +39901,6 @@ exports.default = Home;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.loadData = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -39970,8 +39973,13 @@ function loadData(store) {
 }
 
 // named export needs curly braces.
-exports.loadData = loadData;
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList);
+// export { loadData }; 
+
+// export an object with the loadData function and the component
+exports.default = {
+    loadData: loadData,
+    component: (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList)
+};
 
 /***/ })
 /******/ ]);

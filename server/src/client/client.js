@@ -14,8 +14,12 @@ import reducers from './reducers';
 // rendering into the same div as the index.js file does
 // hydrate is used to refresh what the server sent to the browser
 // don't need to import Home component because it is used in Routes
+// inserted INTIAL_STATE to pass JSON data from the store
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
+const store = createStore(
+    reducers, 
+    window.INITIAL_STATE, 
+    applyMiddleware(thunk));
 
 // Provider updates the root app with changes to store
 ReactDOM.hydrate(

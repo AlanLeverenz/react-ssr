@@ -9266,10 +9266,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // rendering into the same div as the index.js file does
 // hydrate is used to refresh what the server sent to the browser
 // don't need to import Home component because it is used in Routes
+// inserted INTIAL_STATE to pass JSON data from the store
 
 // for asynchronous data actions
 // Startup point for the client side application - bootup location
-var store = (0, _redux.createStore)(_reducers2.default, {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_STATE, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 // Provider updates the root app with changes to store
 // gather state from store

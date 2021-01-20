@@ -5,12 +5,22 @@
 import 'babel-polyfill'; // define helper functions
 import express from 'express';
 import { matchRoutes } from 'react-router-config';
+import proxy from 'express-http-proxy';
 import Routes from './client/Routes';
 import renderer from './helpers/renderer';
 import createStore from './helpers/createStore';
 
 // create const from express functions
 const app = express();
+
+// if browser makes an api request to the server it goes to the proxy
+// opts is an optional function
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator(opts){
+        opts.header['x-forwarded-host'] = 'localhost:3000';
+        return opts;
+    }
+}));
 
 // makes public folder available to client browsers
 app.use(express.static('public'));

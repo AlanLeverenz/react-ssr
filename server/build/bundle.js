@@ -198,6 +198,10 @@ var _express2 = _interopRequireDefault(_express);
 
 var _reactRouterConfig = __webpack_require__(1);
 
+var _expressHttpProxy = __webpack_require__(22);
+
+var _expressHttpProxy2 = _interopRequireDefault(_expressHttpProxy);
+
 var _Routes = __webpack_require__(2);
 
 var _Routes2 = _interopRequireDefault(_Routes);
@@ -213,14 +217,23 @@ var _createStore2 = _interopRequireDefault(_createStore);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create const from express functions
+// define helper functions
+var app = (0, _express2.default)();
+
+// if browser makes an api request to the server it goes to the proxy
+// opts is an optional function
 // const express = require('express');
 // const React = require('react');
 // const renderToString = require('react-dom/server').renderToString;
 // const Home = require('./client/components/Home').default;
-var app = (0, _express2.default)();
+app.use('/api', (0, _expressHttpProxy2.default)('http://react-ssr-api.herokuapp.com', {
+    proxyReqOptDecorator: function proxyReqOptDecorator(opts) {
+        opts.header['x-forwarded-host'] = 'localhost:3000';
+        return opts;
+    }
+}));
 
 // makes public folder available to client browsers
-// define helper functions
 app.use(_express2.default.static('public'));
 
 // tells react-com/server to use the imported renderer function
@@ -553,6 +566,12 @@ exports.default = {
 /***/ (function(module, exports) {
 
 module.exports = require("serialize-javascript");
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = require("express-http-proxy");
 
 /***/ })
 /******/ ]);

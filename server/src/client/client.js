@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'; // for asynchronous data actions
 import { Provider } from 'react-redux'; // gather state from store
 import { renderRoutes } from 'react-router-config';
+import axios from 'axios';
 import Routes from './Routes';
 import reducers from './reducers';
 
@@ -16,10 +17,15 @@ import reducers from './reducers';
 // don't need to import Home component because it is used in Routes
 // inserted INTIAL_STATE to pass JSON data from the store
 
+// set base URL
+const axiosInstance = axios.create({
+    baseURL: '/api'
+});
+
 const store = createStore(
     reducers, 
     window.INITIAL_STATE, 
-    applyMiddleware(thunk));
+    applyMiddleware(thunk.withExtraArgument(axiosInstance)));
 
 // Provider updates the root app with changes to store
 ReactDOM.hydrate(

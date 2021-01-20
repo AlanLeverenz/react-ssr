@@ -8633,29 +8633,24 @@ function verifyPlainObject(value, displayName, methodName) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.fetchUsers = exports.FETCH_USERS = undefined;
-
-var _axios = __webpack_require__(465);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+// import axios from 'axios';
 
 // creating types here instead of separate file
 
 var FETCH_USERS = exports.FETCH_USERS = 'fetch_users';
 var fetchUsers = exports.fetchUsers = function fetchUsers() {
     return function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, api) {
             var res;
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return _axios2.default.get('http://react-ssr-api.herokuapp.com/users');
+                            return api.get('/users');
 
                         case 2:
                             res = _context.sent;
@@ -8674,7 +8669,7 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
             }, _callee, undefined);
         }));
 
-        return function (_x) {
+        return function (_x, _x2, _x3) {
             return _ref.apply(this, arguments);
         };
     }();
@@ -9253,6 +9248,10 @@ var _reactRedux = __webpack_require__(174);
 
 var _reactRouterConfig = __webpack_require__(456);
 
+var _axios = __webpack_require__(465);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 var _Routes = __webpack_require__(462);
 
 var _Routes2 = _interopRequireDefault(_Routes);
@@ -9268,15 +9267,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // don't need to import Home component because it is used in Routes
 // inserted INTIAL_STATE to pass JSON data from the store
 
-// for asynchronous data actions
-// Startup point for the client side application - bootup location
-var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_STATE, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-
-// Provider updates the root app with changes to store
+// set base URL
 // gather state from store
 
 // import Home from './components/Home';
 // will define helper functions
+var axiosInstance = _axios2.default.create({
+    baseURL: '/api'
+}); // for asynchronous data actions
+// Startup point for the client side application - bootup location
+
+
+var store = (0, _redux.createStore)(_reducers2.default, window.INITIAL_STATE, (0, _redux.applyMiddleware)(_reduxThunk2.default.withExtraArgument(axiosInstance)));
+
+// Provider updates the root app with changes to store
 _reactDom2.default.hydrate(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },

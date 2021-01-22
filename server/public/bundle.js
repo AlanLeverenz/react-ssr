@@ -553,7 +553,7 @@ module.exports = function (NAME, exec) {
 "use strict";
 
 
-var bind = __webpack_require__(180);
+var bind = __webpack_require__(179);
 
 /*global toString:true*/
 
@@ -8630,58 +8630,6 @@ function verifyPlainObject(value, displayName, methodName) {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
-// import axios from 'axios';
-
-// creating types here instead of separate file
-
-var FETCH_USERS = exports.FETCH_USERS = 'fetch_users';
-var fetchUsers = exports.fetchUsers = function fetchUsers() {
-    return function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, api) {
-            var res;
-            return regeneratorRuntime.wrap(function _callee$(_context) {
-                while (1) {
-                    switch (_context.prev = _context.next) {
-                        case 0:
-                            _context.next = 2;
-                            return api.get('/users');
-
-                        case 2:
-                            res = _context.sent;
-
-
-                            dispatch({
-                                type: FETCH_USERS,
-                                payload: res
-                            });
-
-                        case 4:
-                        case 'end':
-                            return _context.stop();
-                    }
-                }
-            }, _callee, undefined);
-        }));
-
-        return function (_x, _x2, _x3) {
-            return _ref.apply(this, arguments);
-        };
-    }();
-};
-
-/***/ }),
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 module.exports = function bind(fn, thisArg) {
   return function wrap() {
     var args = new Array(arguments.length);
@@ -8694,7 +8642,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8771,7 +8719,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8783,14 +8731,14 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(17);
-var normalizeHeaderName = __webpack_require__(471);
+var normalizeHeaderName = __webpack_require__(468);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -8806,10 +8754,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(184);
+    adapter = __webpack_require__(183);
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(184);
+    adapter = __webpack_require__(183);
   }
   return adapter;
 }
@@ -8889,20 +8837,20 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(17);
-var settle = __webpack_require__(472);
-var cookies = __webpack_require__(474);
-var buildURL = __webpack_require__(181);
-var buildFullPath = __webpack_require__(475);
-var parseHeaders = __webpack_require__(478);
-var isURLSameOrigin = __webpack_require__(479);
-var createError = __webpack_require__(185);
+var settle = __webpack_require__(469);
+var cookies = __webpack_require__(471);
+var buildURL = __webpack_require__(180);
+var buildFullPath = __webpack_require__(472);
+var parseHeaders = __webpack_require__(475);
+var isURLSameOrigin = __webpack_require__(476);
+var createError = __webpack_require__(184);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -9075,13 +9023,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(473);
+var enhanceError = __webpack_require__(470);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -9100,7 +9048,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9194,7 +9142,7 @@ module.exports = function mergeConfig(config1, config2) {
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9218,6 +9166,58 @@ Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
 
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+// import axios from 'axios';
+
+// creating types here instead of separate file
+
+var FETCH_USERS = exports.FETCH_USERS = 'fetch_users';
+var fetchUsers = exports.fetchUsers = function fetchUsers() {
+    return function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, api) {
+            var res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return api.get('/users');
+
+                        case 2:
+                            res = _context.sent;
+
+
+                            dispatch({
+                                type: FETCH_USERS,
+                                payload: res
+                            });
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, undefined);
+        }));
+
+        return function (_x, _x2, _x3) {
+            return _ref.apply(this, arguments);
+        };
+    }();
+};
 
 /***/ }),
 /* 188 */
@@ -9248,11 +9248,11 @@ var _reactRedux = __webpack_require__(174);
 
 var _reactRouterConfig = __webpack_require__(456);
 
-var _axios = __webpack_require__(465);
+var _axios = __webpack_require__(462);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _Routes = __webpack_require__(462);
+var _Routes = __webpack_require__(480);
 
 var _Routes2 = _interopRequireDefault(_Routes);
 
@@ -38947,61 +38947,20 @@ exports.default = Route;
 /* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-// import { Route } from 'react-router-dom';
-
-
-var _react = __webpack_require__(8);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _HomePage = __webpack_require__(485);
-
-var _HomePage2 = _interopRequireDefault(_HomePage);
-
-var _UsersListPage = __webpack_require__(486);
-
-var _UsersListPage2 = _interopRequireDefault(_UsersListPage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// when we use react-router-config we export an array of objects
-
-// using the spread function to itemize the items in the page components
-exports.default = [_extends({}, _HomePage2.default, {
-    path: '/',
-    exact: true
-}), _extends({}, _UsersListPage2.default, {
-    path: '/users'
-})];
+module.exports = __webpack_require__(463);
 
 /***/ }),
-/* 463 */,
-/* 464 */,
-/* 465 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(466);
-
-/***/ }),
-/* 466 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(17);
-var bind = __webpack_require__(180);
-var Axios = __webpack_require__(467);
-var mergeConfig = __webpack_require__(186);
-var defaults = __webpack_require__(183);
+var bind = __webpack_require__(179);
+var Axios = __webpack_require__(464);
+var mergeConfig = __webpack_require__(185);
+var defaults = __webpack_require__(182);
 
 /**
  * Create an instance of Axios
@@ -39034,18 +38993,18 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(187);
-axios.CancelToken = __webpack_require__(480);
-axios.isCancel = __webpack_require__(182);
+axios.Cancel = __webpack_require__(186);
+axios.CancelToken = __webpack_require__(477);
+axios.isCancel = __webpack_require__(181);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(481);
+axios.spread = __webpack_require__(478);
 
 // Expose isAxiosError
-axios.isAxiosError = __webpack_require__(482);
+axios.isAxiosError = __webpack_require__(479);
 
 module.exports = axios;
 
@@ -39054,17 +39013,17 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 467 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(17);
-var buildURL = __webpack_require__(181);
-var InterceptorManager = __webpack_require__(468);
-var dispatchRequest = __webpack_require__(469);
-var mergeConfig = __webpack_require__(186);
+var buildURL = __webpack_require__(180);
+var InterceptorManager = __webpack_require__(465);
+var dispatchRequest = __webpack_require__(466);
+var mergeConfig = __webpack_require__(185);
 
 /**
  * Create a new instance of Axios
@@ -39156,7 +39115,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 468 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39215,16 +39174,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 469 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(17);
-var transformData = __webpack_require__(470);
-var isCancel = __webpack_require__(182);
-var defaults = __webpack_require__(183);
+var transformData = __webpack_require__(467);
+var isCancel = __webpack_require__(181);
+var defaults = __webpack_require__(182);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -39301,7 +39260,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 470 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39328,7 +39287,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 471 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39347,13 +39306,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 472 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(185);
+var createError = __webpack_require__(184);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -39379,7 +39338,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 473 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39428,7 +39387,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 474 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39488,14 +39447,14 @@ module.exports = (
 
 
 /***/ }),
-/* 475 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(476);
-var combineURLs = __webpack_require__(477);
+var isAbsoluteURL = __webpack_require__(473);
+var combineURLs = __webpack_require__(474);
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -39515,7 +39474,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 
 
 /***/ }),
-/* 476 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39536,7 +39495,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 477 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39557,7 +39516,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 478 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39617,7 +39576,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 479 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39692,13 +39651,13 @@ module.exports = (
 
 
 /***/ }),
-/* 480 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(187);
+var Cancel = __webpack_require__(186);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -39756,7 +39715,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 481 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39790,7 +39749,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 482 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39808,7 +39767,7 @@ module.exports = function isAxiosError(payload) {
 
 
 /***/ }),
-/* 483 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39818,45 +39777,36 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _redux = __webpack_require__(116);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+// import { Route } from 'react-router-dom';
 
-var _usersReducer = __webpack_require__(484);
 
-var _usersReducer2 = _interopRequireDefault(_usersReducer);
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _HomePage = __webpack_require__(481);
+
+var _HomePage2 = _interopRequireDefault(_HomePage);
+
+var _UsersListPage = __webpack_require__(482);
+
+var _UsersListPage2 = _interopRequireDefault(_UsersListPage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = (0, _redux.combineReducers)({
-    users: _usersReducer2.default
-});
+// when we use react-router-config we export an array of objects
+
+// using the spread function to itemize the items in the page components
+exports.default = [_extends({}, _HomePage2.default, {
+    path: '/',
+    exact: true
+}), _extends({}, _UsersListPage2.default, {
+    path: '/users'
+})];
 
 /***/ }),
-/* 484 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _actions = __webpack_require__(179);
-
-exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var action = arguments[1];
-
-    switch (action.type) {
-        case _actions.FETCH_USERS:
-            return action.payload.data;
-        default:
-            return state;
-    }
-}; // a named reducer needs curly braces
-
-/***/ }),
-/* 485 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39897,7 +39847,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 486 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39915,7 +39865,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(174);
 
-var _actions = __webpack_require__(179);
+var _actions = __webpack_require__(187);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39985,6 +39935,54 @@ exports.default = {
     loadData: loadData,
     component: (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList)
 };
+
+/***/ }),
+/* 483 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _redux = __webpack_require__(116);
+
+var _usersReducer = __webpack_require__(484);
+
+var _usersReducer2 = _interopRequireDefault(_usersReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+    users: _usersReducer2.default
+});
+
+/***/ }),
+/* 484 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _actions = __webpack_require__(187);
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actions.FETCH_USERS:
+            return action.payload.data;
+        default:
+            return state;
+    }
+}; // a named reducer needs curly braces
 
 /***/ })
 /******/ ]);

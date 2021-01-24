@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import Header from './components/Header';
+import { fetchCurrentUser } from './actions';
 
 // App will render whatever routes it is given
 const App = ({ route }) => {
@@ -12,6 +13,8 @@ const App = ({ route }) => {
     )
 };
 
+// note: don't need return statement in a single line of code
 export default {
-    component: App
+    component: App,
+    loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
 }

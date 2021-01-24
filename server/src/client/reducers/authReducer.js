@@ -1,3 +1,5 @@
+// a named reducer needs curly braces (as an object)
+
 import { FETCH_CURRENT_USER } from '../actions';
 
 // do not yet know if user is authenticated

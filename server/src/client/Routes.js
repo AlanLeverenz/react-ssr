@@ -3,13 +3,14 @@ import React from 'react';
 import App from './App';
 import HomePage from './pages/HomePage';
 import UsersListPage from './pages/UsersListPage';
-
+import NotFoundPage from './pages/NotFoundPage';
 
 // when we use react-router-config we export an array of objects
 
 // using the spread function to itemize the items in the page components
 
 // without a path the App object wil always be displayed
+
 
 export default [
     {
@@ -23,6 +24,9 @@ export default [
             {
                 ...UsersListPage,
                 path: '/users'
+            },
+            {
+                ...NotFoundPage
             }
         ]
     }

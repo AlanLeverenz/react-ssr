@@ -40212,7 +40212,13 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var NotFoundPage = function NotFoundPage() {
+// StaticRouter renames the prop to staticContext
+// default the value of staticContext as empty object
+var NotFoundPage = function NotFoundPage(_ref) {
+    var _ref$staticContext = _ref.staticContext,
+        staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+    staticContext.notFound = true;
     return _react2.default.createElement(
         'h1',
         null,

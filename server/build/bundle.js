@@ -347,11 +347,10 @@ app.get('*', function (req, res) {
         }
     });
 
-    Promise.all(promises).then(function () {
+    // SOLUTION 2
+    var render = function render() {
         var context = {};
         var content = (0, _renderer2.default)(req, store, context);
-
-        // console.log(context);
 
         // test if notFound is returned in context
         if (context.notFound) {
@@ -359,10 +358,17 @@ app.get('*', function (req, res) {
         };
 
         res.send(content);
-    }).catch(function () {
-        res.send('Something went wrong');
-    });
+    };
+
+    // SOLUTION 2 - try to render and catch
+    Promise.all(promises).then(render).catch(render);
 });
+
+// SOLUTION 1
+// }).catch(() => {
+//     res.send('Something went wrong');
+// });
+// });  
 
 app.listen(3000, function () {
     console.log('Listening on port 3000');

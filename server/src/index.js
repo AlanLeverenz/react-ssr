@@ -45,11 +45,10 @@ app.get('*', (req, res) => {
         }
       });
 
-    Promise.all(promises).then(() => {
+      // SOLUTION 2
+    const render = () => {
         const context = {};
         const content = renderer(req, store, context);
-
-        // console.log(context);
 
         // test if notFound is returned in context
         if (context.notFound) {
@@ -57,10 +56,17 @@ app.get('*', (req, res) => {
         };
 
         res.send(content);
-    }).catch(() => {
-        res.send('Something went wrong');
-    })
-});  
+    }
+
+    // SOLUTION 2 - try to render and catch
+    Promise.all(promises).then(render).catch(render);
+    });
+
+    // SOLUTION 1
+    // }).catch(() => {
+    //     res.send('Something went wrong');
+    // });
+// });  
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');

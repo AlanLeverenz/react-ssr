@@ -359,6 +359,8 @@ app.get('*', function (req, res) {
         };
 
         res.send(content);
+    }).catch(function () {
+        res.send('Something went wrong');
     });
 });
 

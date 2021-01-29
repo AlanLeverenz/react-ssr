@@ -725,6 +725,10 @@ var _reactRedux = __webpack_require__(2);
 
 var _actions = __webpack_require__(1);
 
+var _requireAuth = __webpack_require__(27);
+
+var _requireAuth2 = _interopRequireDefault(_requireAuth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -797,7 +801,8 @@ function mapStateToProps(_ref) {
 // export an object with the loadData function and the component
 exports.default = {
     // loadData,
-    component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })(AdminsListPage),
+    // pass AdminsListPage into HOC
+    component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })((0, _requireAuth2.default)(AdminsListPage)),
     loadData: function loadData(_ref2) {
         var dispatch = _ref2.dispatch;
         return dispatch((0, _actions.fetchAdmins)());
@@ -1031,6 +1036,88 @@ exports.default = function () {
             return state;
     }
 }; // a named reducer needs curly braces (as an object)
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(2);
+
+var _reactRouterDom = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// will send the user to another place in the app
+
+
+exports.default = function (ChildComponent) {
+    var RequireAuth = function (_Component) {
+        _inherits(RequireAuth, _Component);
+
+        function RequireAuth() {
+            _classCallCheck(this, RequireAuth);
+
+            return _possibleConstructorReturn(this, (RequireAuth.__proto__ || Object.getPrototypeOf(RequireAuth)).apply(this, arguments));
+        }
+
+        _createClass(RequireAuth, [{
+            key: 'render',
+            value: function render() {
+                switch (this.props.auth) {
+                    // redirects user to home if not authenticated
+                    case false:
+                        return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+
+                    // still figuring out what to do
+                    case null:
+                        return _react2.default.createElement(
+                            'div',
+                            null,
+                            'Loading...'
+                        );
+
+                    // forward props through to the child component
+                    default:
+                        return _react2.default.createElement(ChildComponent, this.props);
+
+                }
+            }
+        }]);
+
+        return RequireAuth;
+    }(_react.Component);
+
+    // checks to see if user is authenticated
+
+
+    function mapStateToProps(_ref) {
+        var auth = _ref.auth;
+
+        return { auth: auth };
+    }
+
+    // connect helper wraps the component just created
+    // export final wrapped version of the component
+    return (0, _reactRedux.connect)(mapStateToProps)(RequireAuth);
+};
 
 /***/ })
 /******/ ]);

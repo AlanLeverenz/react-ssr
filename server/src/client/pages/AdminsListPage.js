@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchAdmins } from '../actions';
+import requireAuth from '../components/hocs/requireAuth';
 
 class AdminsListPage extends Component {
     componentDidMount() {
@@ -37,6 +38,7 @@ function mapStateToProps( { admins }) {
 // export an object with the loadData function and the component
 export default {
     // loadData,
-    component: connect(mapStateToProps, { fetchAdmins })(AdminsListPage),
+    // pass AdminsListPage into HOC
+    component: connect(mapStateToProps, { fetchAdmins })(requireAuth(AdminsListPage)),
     loadData: ({ dispatch }) => dispatch(fetchAdmins())
 };

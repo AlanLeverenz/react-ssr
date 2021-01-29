@@ -7,6 +7,7 @@ export default (ChildComponent) => {
     class RequireAuth extends Component {
         render() {
             switch (this.props.auth ) {
+                // redirects user to home if not authenticated
                 case false:
                     return <Redirect to="/" />;
 

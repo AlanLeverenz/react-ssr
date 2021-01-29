@@ -348,7 +348,23 @@ app.get('*', function (req, res) {
     });
 
     // SOLUTION 2
-    var render = function render() {
+    // const render = () => {
+    //     const context = {};
+    //     const content = renderer(req, store, context);
+
+    //     // test if notFound is returned in context
+    //     if (context.notFound) {
+    //         res.status(404);
+    //     };
+
+    //     res.send(content);
+    // }
+
+    // SOLUTION 2 - try to render and catch the promise.all
+    // Promise.all(promises).then(render).catch(render);
+
+    // SOLUTION 3 - handle every promise in the array
+    Promise.all(promises).then(function () {
         var context = {};
         var content = (0, _renderer2.default)(req, store, context);
 
@@ -358,10 +374,7 @@ app.get('*', function (req, res) {
         };
 
         res.send(content);
-    };
-
-    // SOLUTION 2 - try to render and catch
-    Promise.all(promises).then(render).catch(render);
+    });
 });
 
 // SOLUTION 1

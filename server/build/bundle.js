@@ -335,6 +335,7 @@ app.get('*', function (req, res) {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
+
     var promises = (0, _reactRouterConfig.matchRoutes)(_Routes2.default, req.path).map(function (_ref) {
         var route = _ref.route;
 

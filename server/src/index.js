@@ -34,6 +34,7 @@ app.get('*', (req, res) => {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
+    
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
     })
@@ -60,7 +61,7 @@ app.get('*', (req, res) => {
 
     // SOLUTION 2 - try to render and catch the promise.all
     // Promise.all(promises).then(render).catch(render);
-    
+
     // SOLUTION 3 - handle every promise in the array
     Promise.all(promises).then(() => {
         const context = {};

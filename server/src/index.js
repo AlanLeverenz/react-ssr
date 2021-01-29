@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
     // some logic to initialize and load data into the store
     // take current incoming path and look at route config object
     // returns an array of components to be rendered
-    
+
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
     })
@@ -66,6 +66,10 @@ app.get('*', (req, res) => {
     Promise.all(promises).then(() => {
         const context = {};
         const content = renderer(req, store, context);
+    
+        if (context.url) {
+          return res.redirect(301, context.url);
+        }
 
         // test if notFound is returned in context
         if (context.notFound) {

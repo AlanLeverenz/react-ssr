@@ -14,13 +14,22 @@ class UsersList extends Component {
         });
     }
 
+    // function for inserting helmet tags
+    // react wants one single string sent to helmet tag
+    head() {
+        return (
+            <Helmet>
+            <title>{`${this.props.users.length} Users Loaded`}</title>
+            <meta property="og:title" content="Users App" />
+        </Helmet>
+        )
+    };
+
+
     render() {
         return (
             <div>
-                <Helmet>
-                    <title>Users App</title>
-                    <meta property="og:title" content="Users App" />
-                </Helmet>
+                {this.head()}
                 Here's a big list of users:
                 <ul>{this.renderUsers()}</ul>
             </div>
